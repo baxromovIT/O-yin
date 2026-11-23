@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AQL AKADEMIYASI | Kognitiv Intellekt & O'yinlar Portali</title>
+  
+  <!-- Shriftlar -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Three.js (r128) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Stillar -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/games.css">
+</head>
+<body>
+
+  <!-- 1. Interaktiv Quyoshli Fon Kanvasi -->
+  <canvas id="portal-bg-canvas"></canvas>
+
+  <!-- 2. UNIQUE ENTRY PORTAL (O'zbek tilida - "Aql Akademiyasi") -->
+  <main id="portal-screen">
+    <div class="portal-brand-header">
+      <div class="portal-brand-badge">
+        <span>☀️</span> Kognitiv Rivojlanish Tizimi
+      </div>
+      <h1 class="portal-brand-title">AQL AKADEMIYASI</h1>
+      <p class="portal-brand-subtitle">
+        Har bir yosh toifasi uchun maxsus ishlab chiqilgan, quyoshli solar-futuristik kognitiv o'yinlar va aqliy mashg'ulotlar markazi.
+      </p>
+    </div>
+
+    <!-- Shaxsiy Identifikatsiya Kapsulasi -->
+    <div class="portal-login-capsule glass-card">
+      <div class="capsule-title-row">
+        <span class="capsule-title">
+          <span>🛡️</span> SHAXSIY IDENTIFIKATSIYA
+        </span>
+        <span class="capsule-version">VERSIYA 2.0 ULTRA</span>
+      </div>
+
+      <div class="login-body-flex">
+        <!-- Dinamik Aql Gerbi -->
+        <div class="crest-preview-container" title="Sizning noyob Aql Gerbingiz">
+          <canvas id="crest-preview-canvas" width="220" height="220"></canvas>
+          <span class="crest-hint">AQL GERBI</span>
+        </div>
+
+        <div class="login-input-col">
+          <label class="login-label" for="input-player-name">Ismingiz yoki Qahramonlik Taxallusingiz:</label>
+          <input 
+            type="text" 
+            id="input-player-name" 
+            class="capsule-input" 
+            placeholder="Ismingizni kiriting..." 
+            autocomplete="off"
+            spellcheck="false"
+            maxlength="20"
+          >
+        </div>
+      </div>
+
+      <button id="btn-portal-login" class="btn-primary btn-portal-enter">
+        TIZIMGA KIRISH →
+      </button>
+    </div>
+  </main>
+
+  <!-- 3. MAIN HUB (ASOSIY MARKAZ) -->
+  <div id="hub-screen" style="display: none;">
+    <!-- Yuqori Boshqaruv Qatori -->
+    <header class="hub-topbar glass-card">
+      <div class="topbar-left">
+        <div class="brand-logo-pill">
+          <span class="brand-icon">☀️</span>
+          <span class="brand-text">AQL AKADEMIYASI</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Foydalanuvchi profili va Aql Gerbi -->
+        <div class="user-profile-badge">
+          <canvas id="topbar-crest-canvas" width="68" height="68"></canvas>
+          <span class="user-name-text" id="topbar-user-name">Temur</span>
+        </div>
+
+        <!-- Aql Quvvati (XP) -->
+        <div class="xp-counter-badge">
+          <span class="xp-icon">⚡</span>
+          <div class="xp-info">
+            <span class="xp-label">AQL QUVVATI:</span>
+            <span class="xp-val" id="topbar-xp-val">100 XP</span>
+          </div>
+        </div>
+
+        <!-- Ovoz Tugmasi -->
+        <button class="btn-secondary" id="btn-toggle-sound" title="Ovozni yoqish/o'chirish">
+          <span>🔊</span> Ovoz: Yoqilgan
+        </button>
+
+        <!-- Chiqish -->
+        <button class="btn-secondary" id="btn-hub-exit" title="Portalga qaytish">
+          <span>🚪</span> Chiqish
+        </button>
+      </div>
+    </header>
+
+    <!-- Hub Salomlashuvi -->
+    <section class="hub-hero">
+      <h2 class="hub-hero-greeting">
+        Xush kelibsiz, <span id="hub-welcome-user" style="color: var(--gold-hover);">Do'stim</span>!
+      </h2>
+      <p class="hub-hero-sub">
+        Bugungi aqliy sayohat va kognitiv mashg'ulotlarga tayyormisiz? O'zingizga mos yosh toifasini tanlang va intellektual cho'qqilarni zabt eting!
+      </p>
+    </section>
+
+    <!-- 4 ta Interaktiv 3D-Tilt O'yin Kartochkalari -->
+    <section class="hub-cards-grid">
+      <!-- 1. 3-5 Yosh -->
+      <article class="game-card card-coloring glass-card" data-game="coloring">
+        <div class="card-top">
+          <span class="age-badge">3–5 YOSH</span>
+          <span class="card-visual-icon">🎨</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Sehrli Mo'yqalam</h3>
+          <div class="card-category">Ijodkorlik va Ranglar</div>
+          <p class="card-desc">
+            Nozik motorika, ranglarni idrok etish va fazoviy tasavvurni shakllantiruvchi quvnoq ranglar studiyasi.
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="card-xp-tag">⚡ +50 XP</span>
+          <span class="card-play-btn">O'YINNI BOSHLASH →</span>
+        </div>
+      </article>
+
+      <!-- 2. 6-10 Yosh -->
+      <article class="game-card card-pipes glass-card" data-game="pipes">
+        <div class="card-top">
+          <span class="age-badge">6–10 YOSH</span>
+          <span class="card-visual-icon">🧩</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Oltin Quvurlar</h3>
+          <div class="card-category">Mantiq va Fazoviy Fikrlash</div>
+          <p class="card-desc">
+            Mexanik quvurlarni burab, qadimiy xazinaga yo'l ochuvchi suyuq oltin energiya oqimini yo'naltiring!
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="card-xp-tag">⚡ +100 XP</span>
+          <span class="card-play-btn">O'YINNI BOSHLASH →</span>
+        </div>
+      </article>
+
+      <!-- 3. 11-15 Yosh -->
+      <article class="game-card card-lock glass-card" data-game="lock">
+        <div class="card-top">
+          <span class="age-badge">11–15 YOSH</span>
+          <span class="card-visual-icon">⚡</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Kiber-Qulf</h3>
+          <div class="card-category">Strategiya va Tezkor Reaksiya</div>
+          <p class="card-desc">
+            Aylanuvchi xavfsizlik to'siqlari va dinamik lazerlardan o'tib, ma'lumotlar kalitlarini qo'lga kiriting!
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="card-xp-tag">⚡ +150 XP</span>
+          <span class="card-play-btn">O'YINNI BOSHLASH →</span>
+        </div>
+      </article>
+
+      <!-- 4. 16-20 Yosh -->
+      <article class="game-card card-race3d glass-card" data-game="race3d">
+        <div class="card-top">
+          <span class="age-badge">16–20 YOSH</span>
+          <span class="card-visual-icon">🏎️</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">MEGA-POYGA 3D: MAXFIY YUK</h3>
+          <div class="card-category">Ultra-HDR 3D Shahar va Taktik Haydash</div>
+          <p class="card-desc">
+            Quyoshli metropolisiya bo'ylab kiber-politsiyani aldab o'ting, tramplinlardan sakrang va maxfiy yukni yetkazing!
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="card-xp-tag">⚡ +250 XP</span>
+          <span class="card-play-btn">O'YINNI BOSHLASH →</span>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <!-- 4. AKTIV O'YIN MAYDONI (GAME VIEW SCREEN) -->
+  <div id="game-screen" style="display: none;">
+    <div class="game-view-header glass-card">
+      <div class="game-header-left">
+        <button class="btn-secondary" id="btn-back-to-hub">
+          <span>←</span> Asosiy Markazga
+        </button>
+        <div class="game-header-title-box">
+          <span class="game-title-text" id="game-title-text">O'yin Nomi</span>
+          <span class="game-age-badge" id="game-age-badge">YOSH</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dinamik yuklanuvchi o'yin konteyneri -->
+    <div id="active-game-container"></div>
+  </div>
+
+  <!-- Skriptlar -->
+  <script src="scripts/audio.js"></script>
+  <script src="scripts/crest.js"></script>
+  <script src="scripts/portal.js"></script>
+  <script src="scripts/game-coloring.js"></script>
+  <script src="scripts/game-pipes.js"></script>
+  <script src="scripts/game-lock.js"></script>
+  <script src="scripts/game-race3d.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>

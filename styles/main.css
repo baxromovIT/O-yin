@@ -1,0 +1,674 @@
+/* ==========================================================================
+   AQL AKADEMIYASI - ASOSIY DIZAYN TIZIMI
+   "Sunlit Solar-Futuristic & Ceramic Glass" Estetikasi
+   Ultra-toza marvarid-oq, shampan oltini, safir moviy va quyosh botishi tuslari.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  /* Ranglar palitrasi */
+  --pearl-white: #f8fafc;
+  --pearl-pure: #ffffff;
+  --gold-primary: #f59e0b;
+  --gold-hover: #d97706;
+  --gold-light: #fef3c7;
+  --gold-glow: rgba(245, 158, 11, 0.4);
+  
+  --cobalt-primary: #2563eb;
+  --cobalt-deep: #1d4ed8;
+  --cobalt-light: #dbeafe;
+  --cobalt-glow: rgba(37, 99, 235, 0.35);
+
+  --emerald-primary: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.35);
+  
+  --sunset-ruby: #f43f5e;
+  --sunset-orange: #f97316;
+
+  --obsidian-dark: #0f172a;
+  --obsidian-slate: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  /* Keramika shisha effektlari (Ceramic Glassmorphism) */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.95);
+  --glass-shadow: 0 20px 50px rgba(15, 23, 42, 0.07), 0 4px 14px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  --glass-shadow-hover: 0 30px 65px rgba(245, 158, 11, 0.15), 0 8px 25px rgba(37, 99, 235, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --card-radius: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--pearl-white);
+  color: var(--obsidian-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fon va fon kanvasi */
+#portal-bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 10%, #ffffff 0%, #fffbeb 50%, #f1f5f9 100%);
+}
+
+/* Keramika shisha kartochka komponenti */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tugmalar */
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-primary) 0%, #fbbf24 50%, var(--gold-hover) 100%);
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 13px 28px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px var(--gold-glow), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px var(--gold-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background: var(--glass-bg-subtle);
+  color: var(--obsidian-slate);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 11px 22px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  border-color: var(--gold-primary);
+  color: var(--gold-hover);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   1. PORTAL EKRANI (AQL AKADEMIYASI - SHAXSIY IDENTIFIKATSIYA)
+   ========================================================================== */
+
+#portal-screen {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.portal-brand-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.portal-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: var(--gold-hover);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.portal-brand-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--obsidian-dark) 20%, var(--gold-hover) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.15;
+}
+
+.portal-brand-subtitle {
+  font-size: 17px;
+  color: var(--text-muted);
+  font-weight: 400;
+  max-width: 540px;
+  margin: 10px auto 0;
+  line-height: 1.5;
+}
+
+/* Suzuvchi Keramika Kapsulasi */
+.portal-login-capsule {
+  width: 100%;
+  max-width: 580px;
+  padding: 38px 42px;
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.09), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.capsule-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  padding-bottom: 14px;
+}
+
+.capsule-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--cobalt-primary);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.capsule-version {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.login-body-flex {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+/* Dinamik Aql Gerbi Kanvasi */
+.crest-preview-container {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 40%, rgba(245, 158, 11, 0.08) 100%);
+  border: 2px solid var(--gold-light);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#crest-preview-canvas {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.crest-hint {
+  position: absolute;
+  bottom: -22px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-hover);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.login-input-col {
+  flex-grow: 1;
+}
+
+.login-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--obsidian-slate);
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.capsule-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--obsidian-dark);
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.capsule-input:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.capsule-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.btn-portal-enter {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 16px;
+}
+
+/* ==========================================================================
+   2. ASOSIY MARKAZ (MAIN HUB)
+   ========================================================================== */
+
+#hub-screen {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* Yuqori Boshqaruv Qatori (Top Navigation Bar) */
+.hub-topbar {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  max-width: 1280px;
+  margin: 0 auto 36px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-icon {
+  font-size: 24px;
+}
+
+.brand-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  background: linear-gradient(135deg, var(--obsidian-dark) 0%, var(--gold-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Profil kapsulasi */
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 8px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+#topbar-crest-canvas {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.user-name-text {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--obsidian-dark);
+}
+
+/* Aql Quvvati (XP) */
+.xp-counter-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--gold-light) 0%, #ffffff 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+}
+
+.xp-icon {
+  font-size: 16px;
+}
+
+.xp-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--gold-hover);
+  letter-spacing: 0.5px;
+}
+
+.xp-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--obsidian-dark);
+}
+
+/* Hub Hero Qismi */
+.hub-hero {
+  max-width: 1280px;
+  margin: 0 auto 36px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.hub-hero-greeting {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--obsidian-dark);
+  margin-bottom: 10px;
+}
+
+.hub-hero-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* 4 ta 3D-Tilt O'yin Kartochkalari To'ri */
+.hub-cards-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.game-card {
+  padding: 30px 26px;
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+  position: relative;
+}
+
+.game-card:hover {
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
+
+.card-coloring::before { background: linear-gradient(90deg, #ec4899, #f59e0b); }
+.card-pipes::before { background: linear-gradient(90deg, #f59e0b, #10b981); }
+.card-lock::before { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
+.card-race3d::before { background: linear-gradient(90deg, #f43f5e, #f59e0b); }
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.age-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--obsidian-slate);
+}
+
+.card-visual-icon {
+  font-size: 38px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
+}
+
+.card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--obsidian-dark);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.card-category {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cobalt-primary);
+  margin-bottom: 14px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  padding-top: 18px;
+}
+
+.card-xp-tag {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold-hover);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-play-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--cobalt-deep);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover .card-play-btn {
+  transform: translateX(4px);
+  color: var(--gold-hover);
+}
+
+/* ==========================================================================
+   3. O'YINLAR MAYDONI (GAME VIEW CONTAINER)
+   ========================================================================== */
+
+#game-screen {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  padding: 16px 24px 40px;
+}
+
+.game-view-header {
+  max-width: 1280px;
+  margin: 0 auto 20px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.game-header-title-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.game-title-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--obsidian-dark);
+}
+
+.game-age-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--gold-light);
+  color: var(--gold-hover);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+#active-game-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* XP Notification Toast */
+.xp-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  padding: 16px 24px;
+  background: #ffffff;
+  border-left: 5px solid var(--gold-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-toast {
+  animation: slideInRight 0.4s ease;
+}
+
+.xp-toast.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.toast-xp {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--gold-hover);
+}
+
+.toast-reason {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--obsidian-slate);
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Adaptiv dizayn (Mobile & Tablet) */
+@media (max-width: 768px) {
+  .portal-brand-title { font-size: 32px; }
+  .login-body-flex { flex-direction: column; text-align: center; }
+  .hub-topbar { flex-direction: column; gap: 12px; }
+  .hub-hero-greeting { font-size: 28px; }
+  .game-view-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+}

@@ -1,0 +1,891 @@
+/* ==========================================================================
+   AQL AKADEMIYASI - O'YINLAR STILLARI (GAMES STYLESHEET)
+   ========================================================================== */
+
+/* ==========================================================================
+   GAME 1: "SEHRLI MO'YQALAM" (3-5 YOSH)
+   ========================================================================== */
+
+.coloring-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.studio-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.task-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--obsidian-dark);
+}
+
+.task-icon {
+  font-size: 20px;
+}
+
+.task-status .badge-success {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.task-status .badge-pending {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.studio-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.studio-workspace {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.studio-sidebar {
+  width: 220px;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.drawings-list, .tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawing-btn, .tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--obsidian-slate);
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.drawing-btn:hover, .tool-btn:hover {
+  border-color: var(--gold-primary);
+  background: #fffbeb;
+  transform: translateX(2px);
+}
+
+.drawing-btn.active, .tool-btn.active {
+  background: var(--gold-light);
+  border-color: var(--gold-primary);
+  color: var(--gold-hover);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.brush-sizes {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.brush-sizes label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.size-options {
+  display: flex;
+  gap: 6px;
+}
+
+.size-btn {
+  flex: 1;
+  padding: 6px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  cursor: pointer;
+  color: var(--obsidian-slate);
+  transition: all 0.2s ease;
+}
+
+.size-btn.active {
+  background: var(--gold-primary);
+  color: #ffffff;
+  border-color: var(--gold-hover);
+}
+
+/* Kanvas stack */
+.canvas-viewport {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.canvas-layers-stack {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.canvas-layers-stack canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#color-sparkle-canvas {
+  cursor: crosshair;
+}
+
+/* O'ng panel: Ranglar Palitrasi */
+.right-bar {
+  width: 190px;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.palette-color-btn {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.palette-color-btn:hover {
+  transform: scale(1.15);
+}
+
+.palette-color-btn.active {
+  transform: scale(1.22);
+  box-shadow: 0 0 0 3px var(--gold-primary), 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.active-color-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.color-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--obsidian-dark);
+}
+
+/* ==========================================================================
+   GAME 2: "OLTIN QUVURLAR" (6-10 YOSH)
+   ========================================================================== */
+
+.pipes-game-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.pipes-header {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+.level-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.level-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--obsidian-dark);
+}
+
+.moves-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.status-indicator {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--obsidian-slate);
+  text-align: center;
+}
+
+.pipes-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pulse-glow {
+  animation: pulseGlow 1.2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+  to { box-shadow: 0 0 25px rgba(16, 185, 129, 0.85); }
+}
+
+.pipes-board-container {
+  padding: 28px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.pipes-grid {
+  display: grid;
+  gap: 12px;
+  max-width: 560px;
+  width: 100%;
+}
+
+.pipe-tile {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pipe-tile:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.18);
+  transform: translateY(-2px);
+}
+
+.pipe-tile.type-source, .pipe-tile.type-vault, .pipe-tile.type-block {
+  cursor: default;
+}
+
+.tile-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Quvur SVG elementlari */
+.pipe-svg {
+  width: 82%;
+  height: 82%;
+}
+
+.pipe-body {
+  fill: #e2e8f0;
+  stroke: #cbd5e1;
+  stroke-width: 2;
+}
+
+.pipe-fluid {
+  fill: #94a3b8;
+  transition: fill 0.3s ease;
+}
+
+.pipe-joint {
+  fill: #f59e0b;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+/* Oqim harakati */
+.flowing-active .pipe-fluid {
+  fill: #f59e0b;
+  filter: drop-shadow(0 0 6px #fbbf24);
+}
+
+.flowing-active .pipe-body {
+  stroke: #f59e0b;
+}
+
+/* Manba & Xazina */
+.source-beacon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #38bdf8 20%, #0284c7 80%);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+  animation: pulseBeacon 1.5s infinite alternate;
+}
+
+@keyframes pulseBeacon {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.08); }
+}
+
+.vault-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
+}
+
+.vault-unlocked .vault-box {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.7);
+}
+
+.obstacle-stone {
+  font-size: 32px;
+  color: #94a3b8;
+}
+
+.tile-tag {
+  position: absolute;
+  bottom: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   GAME 3: "KIBER-QULF" (11-15 YOSH)
+   ========================================================================== */
+
+.cyber-lock-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.lock-hud {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.hud-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--obsidian-dark);
+}
+
+.key-icons {
+  display: flex;
+  gap: 6px;
+}
+
+.key-icon {
+  font-size: 18px;
+  opacity: 0.25;
+  filter: grayscale(1);
+  transition: all 0.3s ease;
+}
+
+.key-icon.collected {
+  opacity: 1;
+  filter: grayscale(0) drop-shadow(0 0 6px #f59e0b);
+  transform: scale(1.15);
+}
+
+.shield-bars {
+  display: flex;
+  gap: 6px;
+}
+
+.shield-pip {
+  width: 22px;
+  height: 10px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shield-pip.active {
+  background: var(--cobalt-primary);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+}
+
+.lock-canvas-container {
+  position: relative;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#cyber-lock-canvas {
+  display: block;
+  border-radius: 14px;
+  max-width: 100%;
+  height: auto;
+  background: #f8fafc;
+}
+
+.slowmo-overlay {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(245, 158, 11, 0.9);
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  pointer-events: none;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  transition: opacity 0.3s ease;
+}
+
+.lock-instructions {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ==========================================================================
+   GAME 4: "MEGA-POYGA 3D: MAXFIY YUK" (16-20 YOSH)
+   ========================================================================== */
+
+.race3d-wrapper {
+  position: relative;
+  width: 100%;
+  height: 82vh;
+  min-height: 560px;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+}
+
+.three-viewport {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* HUD Overlay */
+.race-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.race-hud .glass-card, .hud-touch-controls button {
+  pointer-events: auto;
+}
+
+/* Yuqori Chap Radar */
+.hud-radar-box {
+  width: 180px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.radar-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+#race-radar-canvas {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid rgba(56, 189, 248, 0.4);
+}
+
+.radar-legend {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--obsidian-slate);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.dot-player { width: 7px; height: 7px; border-radius: 50%; background: #38bdf8; display: inline-block; }
+.dot-cargo { width: 7px; height: 7px; border-radius: 50%; background: #10b981; display: inline-block; }
+.dot-police { width: 7px; height: 7px; border-radius: 50%; background: #ef4444; display: inline-block; }
+
+/* Yuqori Markaz: Vazifa va Taymer */
+.hud-center-box {
+  align-self: center;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.mission-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mission-icon { font-size: 18px; }
+
+.mission-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--obsidian-dark);
+}
+
+.race-timer-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 18px;
+  border-left: 2px solid rgba(226, 232, 240, 0.8);
+}
+
+.timer-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.timer-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--gold-hover);
+}
+
+/* Pastki Qator */
+.hud-dashboard {
+  align-self: flex-start;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 270px;
+}
+
+.speed-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.speed-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--obsidian-dark);
+  line-height: 1;
+}
+
+.speed-unit {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--cobalt-primary);
+  letter-spacing: 0.5px;
+}
+
+.meters-col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meter-name {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  width: 44px;
+}
+
+.meter-bar-wrap {
+  flex-grow: 1;
+  height: 9px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter-bar-fill {
+  height: 100%;
+  transition: width 0.15s ease;
+}
+
+.nitro-fill {
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+.health-fill {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+/* 100% ISHONCHLI SENSOR / SICHQONCHA BOSHQARUV TUGMALARI */
+.hud-touch-controls {
+  align-self: flex-end;
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.pedal-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vert-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.extra-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pedal-btn {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: all 0.1s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--obsidian-dark);
+}
+
+.btn-turn {
+  width: 65px;
+  height: 65px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn-gas, .btn-brake {
+  width: 75px;
+  height: 55px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.btn-nitro, .btn-drift {
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 14px;
+}
+
+.btn-nitro {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.9), rgba(56, 189, 248, 0.9));
+  color: #ffffff;
+}
+
+.key-sub {
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+/* Tugma bosilganda (Klaviatura yoki Sichqoncha orqali) */
+.pedal-btn.active-press, .pedal-btn:active {
+  transform: scale(0.92);
+  background: var(--gold-light);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 20px var(--gold-glow);
+  color: var(--gold-hover);
+}
+
+.btn-nitro.active-press {
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+}
+
+/* Modallar (G'alaba va Yakun) */
+.pipes-modal-overlay, .lock-modal-overlay, .race-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.pipes-modal-content, .lock-modal-content, .race-modal-content {
+  max-width: 460px;
+  width: 90%;
+  padding: 36px 32px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.modal-icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--obsidian-dark);
+  margin-bottom: 10px;
+}
+
+.modal-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.modal-reward {
+  display: inline-block;
+  padding: 8px 18px;
+  background: var(--gold-light);
+  color: var(--gold-hover);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 24px;
+}
